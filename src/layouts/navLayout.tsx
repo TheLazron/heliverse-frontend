@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import { Flex } from "@chakra-ui/react";
+import Navbar from "../components/navbar";
 
 interface NavLayoutProps {
   children: ReactNode;
@@ -7,9 +8,11 @@ interface NavLayoutProps {
 
 const NavLayout = ({ children }: NavLayoutProps): JSX.Element => {
   return (
-    <Flex height="100%">
-      {/* <Navbar /> */}
-      <Flex flex="1">{children}</Flex>
+    <Flex direction="column" height="100vh">
+      <Navbar />
+      <Flex width="100%" flex="1">
+        {children}
+      </Flex>
     </Flex>
   );
 };

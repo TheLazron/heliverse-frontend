@@ -30,7 +30,7 @@ const LoginCard = () => {
   } = useForm<LoginFormValues>();
   const onSubmit: SubmitHandler<LoginFormValues> = async (data) => {
     console.log("data", data);
-    await dispatch(login(data));
+    dispatch(login(data));
     console.log("jwtToken", jwtToken);
     navigate("/dashboard/");
   };

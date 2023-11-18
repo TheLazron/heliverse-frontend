@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import type { LoginFormValues } from "../components/LoginCard";
+import type { LoginFormValues } from "../components/loginCard";
 import { SignupFormValues } from "../components/signupCard";
 
 const initialState = {
