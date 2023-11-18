@@ -5,14 +5,23 @@ import {
   // Navigate,
 } from "react-router-dom";
 import "./App.css";
-import SampleComponent from "./components/sampleComponent";
+import LoginCard from "./components/LoginCard";
+import SignUpCard from "./components/signupCard";
+import AuthPage from "./pages/authentication";
+import Home from "./components/home";
 
 function App() {
   return (
     <Router>
+      {/* <NavLayout> */}
       <Routes>
-        <Route path="/" element={<SampleComponent />} />
+        <Route path="/auth" element={<AuthPage />}>
+          <Route path="login" element={<LoginCard />} />
+          <Route path="signup" element={<SignUpCard />} />
+        </Route>
+        <Route path="/dashboard" element={<Home />} />
       </Routes>
+      {/* </NavLayout> */}
     </Router>
   );
 }
