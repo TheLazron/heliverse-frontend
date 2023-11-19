@@ -1,8 +1,18 @@
-import { HStack, Select, Text, VStack, useRadioGroup } from "@chakra-ui/react";
+import {
+  HStack,
+  Input,
+  InputGroup,
+  InputLeftElement,
+  Select,
+  Text,
+  VStack,
+  useRadioGroup,
+} from "@chakra-ui/react";
 import RadioCard from "./ui/radioCard";
 import { useState, useEffect } from "react";
 import debounce from "lodash.debounce";
 import qs from "qs";
+import { SearchIcon } from "@chakra-ui/icons";
 
 export const genders = ["Male", "Female", "Polygender", "Agender", "Bigender"];
 export const domains = [
@@ -24,6 +34,7 @@ const FilterSection = ({ setQueryString }: FilterSectionProps) => {
   const [availabilityValue, setAvailabilityValue] = useState<boolean | null>(
     null
   );
+  const [searchQuery, setSearchQuery] = useState("");
 
   //radiocard
   const options = [
@@ -47,6 +58,7 @@ const FilterSection = ({ setQueryString }: FilterSectionProps) => {
       gender: genderValue,
       domain: domainValue,
       available: availabilityValue,
+      name: searchQuery,
     });
     setQueryString(queryString);
   }, 500);
@@ -55,9 +67,10 @@ const FilterSection = ({ setQueryString }: FilterSectionProps) => {
 
     return () => updateQueryString.cancel();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [genderValue, domainValue, availabilityValue]);
+  }, [genderValue, domainValue, availabilityValue, searchQuery]);
 
   return (
+    // <VStack alignItems={"flex-start"}>
     <VStack width="90%" alignItems={"flex-start"} my={6}>
       <HStack spacing={5}>
         <HStack>
@@ -102,7 +115,21 @@ const FilterSection = ({ setQueryString }: FilterSectionProps) => {
           </HStack>
         </HStack>
       </HStack>
+      <InputGroup width="70%">
+        <InputLeftElement pointerEvents="none">
+          <SearchIcon color="gray.300" />
+        </InputLeftElement>
+        <Input
+          value={searchQuery}
+          onChange={(e) => {
+            setSearchQuery(e.target.value);
+          }}
+          type="text"
+          placeholder="Search By Name"
+        />
+      </InputGroup>
     </VStack>
+    // </VStack>
   );
 };
 
