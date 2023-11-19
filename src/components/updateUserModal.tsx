@@ -1,8 +1,10 @@
 import {
+  Box,
   Button,
   Flex,
   FormControl,
   FormLabel,
+  HStack,
   IconButton,
   Input,
   Modal,
@@ -54,6 +56,22 @@ const UpdateUserModal = ({ userData }: UpdateUserModalProps) => {
     if (!loggedUser) return;
     axios
       .put(`http://localhost:3000/api/users/${userData.id}`, data, {
+        headers: {
+          Authorization: `Bearer ${jwt}`,
+        },
+      })
+      .then((res) => {
+        console.log("res", res);
+        onClose();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const deleteUser = (id: string) => {
+    axios
+      .delete(`http://localhost:3000/api/users/${id}`, {
         headers: {
           Authorization: `Bearer ${jwt}`,
         },
@@ -168,9 +186,25 @@ const UpdateUserModal = ({ userData }: UpdateUserModalProps) => {
                 </Select>
               </FormControl>
             </ModalBody>
-            <ModalFooter>
-              <Button type="submit">Submit</Button>
-              <Button onClick={onClose}>Close</Button>
+            <ModalFooter
+              width="100%"
+              alignItems={"center"}
+              justifyContent={"space-between"}
+            >
+              <Box>
+                <Button
+                  onClick={() => {
+                    deleteUser(userData.id);
+                  }}
+                  colorScheme={"red"}
+                >
+                  Delete User
+                </Button>
+              </Box>
+              <HStack spacing={2}>
+                <Button type="submit">Submit</Button>
+                <Button onClick={onClose}>Close</Button>
+              </HStack>
             </ModalFooter>
           </form>
         </ModalContent>
