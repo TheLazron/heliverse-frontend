@@ -36,7 +36,7 @@ const Home = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, [queryString, page]);
+  }, [queryString, page, jwt]);
 
   return (
     <Flex
