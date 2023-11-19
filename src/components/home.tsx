@@ -46,7 +46,8 @@ const Home = () => {
             profiles?.map((profile: any) => {
               return (
                 <ProfileCard
-                  key={profile.email}
+                  key={profile._id}
+                  id={profile._id}
                   avatar={profile.avatar}
                   email={profile.email}
                   firstName={profile.firstName}

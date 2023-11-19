@@ -8,12 +8,15 @@ import {
   Icon,
   VStack,
   HStack,
+  Box,
 } from "@chakra-ui/react";
 import { BsSuitcaseLgFill } from "react-icons/bs";
 import { MdEmail } from "react-icons/md";
 import { RxAvatar } from "react-icons/rx";
+import UpdateUserModal from "../updateUserModal";
 
 interface ProfileCardProps {
+  id: string;
   avatar: string;
   firstName: string;
   lastName: string;
@@ -24,6 +27,7 @@ interface ProfileCardProps {
 }
 
 const ProfileCard = ({
+  id,
   avatar,
   firstName,
   lastName,
@@ -35,11 +39,25 @@ const ProfileCard = ({
   return (
     <Card rounded={"lg"} overflow={"clip"}>
       <Flex
+        position={"relative"}
         p={3}
         alignItems={"center"}
         justifyContent={"center"}
         bgColor={"brand.primary"}
       >
+        <Box right={1} top={1} position={"absolute"}>
+          <UpdateUserModal
+            userData={{
+              id,
+              firstName,
+              lastName,
+              avatar,
+              available,
+              domain,
+              gender,
+            }}
+          />
+        </Box>
         <Avatar size="2xl" name="Dan Abrahmov" src={avatar} />
       </Flex>
       <Flex
@@ -61,7 +79,6 @@ const ProfileCard = ({
             </Heading> */}
             <Heading
               color="brand.dark"
-              as="h4"
               size="md"
               whiteSpace="nowrap"
               overflow="hidden"
@@ -69,6 +86,14 @@ const ProfileCard = ({
             >
               {firstName} {lastName}
             </Heading>
+            <Badge
+              rounded="2xl"
+              size="md"
+              variant="subtle"
+              colorScheme={available ? "green" : "red"}
+            >
+              {available ? "Available" : "Unavailable"}
+            </Badge>
           </HStack>
 
           {/* </Flex> */}
@@ -81,19 +106,17 @@ const ProfileCard = ({
             <Text>{email}</Text>
           </HStack>
           <HStack justifyContent={"space-between"} width={"100%"}>
-            <HStack>
+            <HStack justifyContent={"flex-start"}>
               <Icon as={BsSuitcaseLgFill} />
-              <Text>{domain}</Text>
+              <Text
+                whiteSpace="nowrap"
+                overflow="hidden"
+                textOverflow="ellipsis"
+                textAlign={"left"}
+              >
+                {domain}
+              </Text>
             </HStack>
-
-            <Badge
-              rounded="2xl"
-              size="md"
-              variant="subtle"
-              colorScheme={available ? "green" : "red"}
-            >
-              {available ? "Available" : "Unavailable"}
-            </Badge>
           </HStack>
         </VStack>
       </Flex>
