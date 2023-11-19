@@ -17,6 +17,8 @@ function App() {
     <Router>
       <NavLayout>
         <Routes>
+<Route path="/" element={<Navigate to="/auth/login" />} />
+
           <Route path="/auth" element={<AuthPage />}>
             <Route path="login" element={<LoginCard />} />
             <Route path="signup" element={<SignUpCard />} />
