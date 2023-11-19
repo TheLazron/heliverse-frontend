@@ -6,6 +6,7 @@ import FilterSection from "./filtersSection";
 import axios from "axios";
 import { useAppSelector } from "../store/hooks";
 import AddUserModal from "./AddUserModal";
+import CreateTeamModal from "./createTeamModa.l";
 
 const Home = () => {
   const jwt = useAppSelector((state) => state.auth.jwtToken);
@@ -47,8 +48,9 @@ const Home = () => {
     >
       <FilterSection setPage={setPage} setQueryString={setQueryString} />
       <Divider />
-      <Flex width="90%" justifyContent={"end"}>
+      <Flex width="90%" gap={4} justifyContent={"end"}>
         <AddUserModal />
+        <CreateTeamModal />
       </Flex>
       <Text>{queryString}</Text>
       <Flex flexWrap={"wrap"} width="90%">
