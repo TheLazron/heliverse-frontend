@@ -4,8 +4,8 @@ import { useState, useEffect } from "react";
 import debounce from "lodash.debounce";
 import qs from "qs";
 
-const genders = ["Male", "Female", "Polygender", "Agender", "Bigender"];
-const domains = [
+export const genders = ["Male", "Female", "Polygender", "Agender", "Bigender"];
+export const domains = [
   "Sales",
   "UI Design",
   "Finance",

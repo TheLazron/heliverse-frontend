@@ -4,6 +4,7 @@ import ProfileCard from "./ui/profileCard";
 import FilterSection from "./filtersSection";
 import axios from "axios";
 import { useAppSelector } from "../store/hooks";
+import AddUserModal from "./AddUserModal";
 
 const Home = () => {
   const jwt = useAppSelector((state) => state.auth.jwtToken);
@@ -35,7 +36,9 @@ const Home = () => {
     >
       <FilterSection setQueryString={setQueryString} />
       <Divider />
-      <Text>Query String: {queryString}</Text>
+      <Flex width="90%" justifyContent={"end"}>
+        <AddUserModal />
+      </Flex>
       <Flex flexWrap={"wrap"} width="90%">
         <SimpleGrid width={"100%"} mt={8} columns={[1, 2, 3, 4]} spacing="20px">
           {profiles.length > 0 ? (
