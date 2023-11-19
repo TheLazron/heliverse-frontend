@@ -10,6 +10,7 @@ import SignUpCard from "./components/signupCard";
 import AuthPage from "./pages/authentication";
 import Home from "./components/home";
 import NavLayout from "./layouts/navLayout";
+import TeamsPage from "./components/teamsPage";
 
 function App() {
   return (
@@ -20,7 +21,8 @@ function App() {
             <Route path="login" element={<LoginCard />} />
             <Route path="signup" element={<SignUpCard />} />
           </Route>
-          <Route path="/dashboard" element={<Home />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/teams" element={<TeamsPage />} />
         </Routes>
       </NavLayout>
     </Router>

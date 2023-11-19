@@ -32,7 +32,7 @@ const LoginCard = () => {
     console.log("data", data);
     dispatch(login(data));
     console.log("jwtToken", jwtToken);
-    navigate("/dashboard/");
+    navigate("/home/");
   };
 
   return (

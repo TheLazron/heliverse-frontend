@@ -117,7 +117,7 @@ function CreateTeamModal() {
       <Modal size="4xl" onClose={onClose} isOpen={isOpen} isCentered>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Add New User</ModalHeader>
+          <ModalHeader>Create New Team</ModalHeader>
           <ModalCloseButton />
           <form onSubmit={handleSubmit(onSubmit)}>
             <ModalBody>
@@ -174,8 +174,10 @@ function CreateTeamModal() {
               </FormControl>
             </ModalBody>
             <ModalFooter>
-              <Button type="submit">Create Team</Button>
-              <Button onClick={onClose}>Close</Button>
+              <Flex gap={4}>
+                <Button type="submit">Create Team</Button>
+                <Button onClick={onClose}>Close</Button>
+              </Flex>
             </ModalFooter>
           </form>
         </ModalContent>

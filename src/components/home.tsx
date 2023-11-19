@@ -52,7 +52,6 @@ const Home = () => {
         <AddUserModal />
         <CreateTeamModal />
       </Flex>
-      <Text>{queryString}</Text>
       <Flex flexWrap={"wrap"} width="90%">
         <SimpleGrid width={"100%"} mt={8} columns={[1, 2, 3, 4]} spacing="20px">
           {profiles.length > 0 ? (
@@ -85,7 +84,6 @@ const Home = () => {
           >
             Load More
           </Button>
-          <Text>Page: {page}</Text>
         </Box>
       </Flex>
     </Flex>

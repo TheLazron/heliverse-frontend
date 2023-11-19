@@ -52,8 +52,14 @@ const Navbar = () => {
           (item) => item.label !== "Sign Up" && item.label !== "Sign In"
         ),
         {
-          label: "Dashboard",
-          href: "/dashboard/",
+          label: "Home",
+          href: "/home/",
+          variant: "ghost",
+          styles: { bg: "brand.primary", color: "white" },
+        },
+        {
+          label: "Teams",
+          href: "/teams/",
           variant: "ghost",
           styles: { bg: "brand.primary", color: "white" },
         },
