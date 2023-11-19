@@ -51,7 +51,7 @@ function CreateTeamModal() {
     console.log("formData", formData);
 
     axios
-      .post("http://localhost:3000/api/teams", formData, {
+      .post("https://ary-backend.azurewebsites.net/api/teams", formData, {
         headers: {
           Authorization: `Bearer ${jwt}`,
         },
@@ -68,7 +68,7 @@ function CreateTeamModal() {
   useEffect(() => {
     setLoading(true);
     axios
-      .get("http://localhost:3000/api/users", {
+      .get("https://ary-backend.azurewebsites.net/api/users", {
         headers: {
           Authorization: `Bearer ${jwt}`,
         },

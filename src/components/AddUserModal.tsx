@@ -42,7 +42,7 @@ function AddUserModal() {
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     console.log("submitted data ", data);
     axios
-      .post("http://localhost:3000/api/users", data, {
+      .post("https://ary-backend.azurewebsites.net/api/users", data, {
         headers: {
           Authorization: `Bearer ${jwt}`,
         },

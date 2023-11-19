@@ -13,7 +13,7 @@ export const login = createAsyncThunk(
   async (userData: LoginFormValues) => {
     try {
       const response = await axios.post(
-        "http://localhost:3000/login",
+        "https://ary-backend.azurewebsites.net/login",
         userData
       );
       console.log(response, "user login successful");
@@ -30,7 +30,7 @@ export const signup = createAsyncThunk(
   async (userData: SignupFormValues) => {
     try {
       const response = await axios.post(
-        "http://localhost:3000/signup",
+        "https://ary-backend.azurewebsites.net/signup",
         userData
       );
       console.log(response, "user signup successful");

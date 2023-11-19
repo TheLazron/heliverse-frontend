@@ -13,11 +13,14 @@ const TeamsPage = () => {
   useEffect(() => {
     const fetchTeams = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/teams", {
-          headers: {
-            Authorization: `Bearer ${jwt}`,
-          },
-        });
+        const response = await axios.get(
+          "https://ary-backend.azurewebsites.net/api/teams",
+          {
+            headers: {
+              Authorization: `Bearer ${jwt}`,
+            },
+          }
+        );
         setTeams(response.data.teams);
       } catch (error) {
         console.error("Error fetching teams:", error);

@@ -55,11 +55,15 @@ const UpdateUserModal = ({ userData }: UpdateUserModalProps) => {
     console.log("submitted data ", data);
     if (!loggedUser) return;
     axios
-      .put(`http://localhost:3000/api/users/${userData.id}`, data, {
-        headers: {
-          Authorization: `Bearer ${jwt}`,
-        },
-      })
+      .put(
+        `https://ary-backend.azurewebsites.net/api/users/${userData.id}`,
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${jwt}`,
+          },
+        }
+      )
       .then((res) => {
         console.log("res", res);
         onClose();
@@ -71,7 +75,7 @@ const UpdateUserModal = ({ userData }: UpdateUserModalProps) => {
 
   const deleteUser = (id: string) => {
     axios
-      .delete(`http://localhost:3000/api/users/${id}`, {
+      .delete(`https://ary-backend.azurewebsites.net/api/users/${id}`, {
         headers: {
           Authorization: `Bearer ${jwt}`,
         },

@@ -18,7 +18,7 @@ const Home = () => {
     console.log(queryString);
     axios
       .get(
-        `http://localhost:3000/api/users?page=${page}&pageSize=${size}${queryString}`,
+        `https://ary-backend.azurewebsites.net/api/users?page=${page}&pageSize=${size}${queryString}`,
         {
           headers: {
             Authorization: `Bearer ${jwt}`,
