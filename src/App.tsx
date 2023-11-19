@@ -2,7 +2,7 @@ import {
   BrowserRouter as Router,
   Route,
   Routes,
-  // Navigate,
+  Navigate,
 } from "react-router-dom";
 import "./App.css";
 import LoginCard from "./components/loginCard";
@@ -17,7 +17,7 @@ function App() {
     <Router>
       <NavLayout>
         <Routes>
-<Route path="/" element={<Navigate to="/auth/login" />} />
+          <Route path="/" element={<Navigate to="/auth/login" />} />
 
           <Route path="/auth" element={<AuthPage />}>
             <Route path="login" element={<LoginCard />} />
