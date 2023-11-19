@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useEffect } from "react";
-import { Divider, Flex, SimpleGrid, Text } from "@chakra-ui/react";
+import { Box, Button, Divider, Flex, SimpleGrid, Text } from "@chakra-ui/react";
 import ProfileCard from "./ui/profileCard";
 import FilterSection from "./filtersSection";
 import axios from "axios";
@@ -10,22 +11,32 @@ const Home = () => {
   const jwt = useAppSelector((state) => state.auth.jwtToken);
   const [queryString, setQueryString] = useState("");
   const [profiles, setProfiles] = useState([]);
+  const [page, setPage] = useState(1);
+  const [size] = useState(2);
   useEffect(() => {
     console.log(queryString);
     axios
-      .get(`http://localhost:3000/api/users?${queryString}`, {
-        headers: {
-          Authorization: `Bearer ${jwt}`,
-        },
-      })
+      .get(
+        `http://localhost:3000/api/users?page=${page}&pageSize=${size}${queryString}`,
+        {
+          headers: {
+            Authorization: `Bearer ${jwt}`,
+          },
+        }
+      )
       .then((res) => {
         console.log("got these users", res.data);
-        setProfiles(res.data.users);
+        setProfiles((prevProfiles) => {
+          return page > 1
+            ? [...prevProfiles, ...res.data.users]
+            : res.data.users;
+        });
       })
       .catch((error) => {
         console.log(error);
       });
-  }, [queryString]);
+  }, [queryString, page]);
+
   return (
     <Flex
       width={"100%"}
@@ -34,11 +45,12 @@ const Home = () => {
       flexWrap={"wrap"}
       justifyContent="center"
     >
-      <FilterSection setQueryString={setQueryString} />
+      <FilterSection setPage={setPage} setQueryString={setQueryString} />
       <Divider />
       <Flex width="90%" justifyContent={"end"}>
         <AddUserModal />
       </Flex>
+      <Text>{queryString}</Text>
       <Flex flexWrap={"wrap"} width="90%">
         <SimpleGrid width={"100%"} mt={8} columns={[1, 2, 3, 4]} spacing="20px">
           {profiles.length > 0 ? (
@@ -62,6 +74,17 @@ const Home = () => {
             <Text>No Profiles to Display</Text>
           )}
         </SimpleGrid>
+        <Box mt={8} width="100%">
+          <Button
+            onClick={() => {
+              setPage((page) => page + 1);
+            }}
+            alignSelf={"center"}
+          >
+            Load More
+          </Button>
+          <Text>Page: {page}</Text>
+        </Box>
       </Flex>
     </Flex>
   );

@@ -26,9 +26,11 @@ export const domains = [
 
 interface FilterSectionProps {
   setQueryString: (value: string) => void;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  setPage: any;
 }
 
-const FilterSection = ({ setQueryString }: FilterSectionProps) => {
+const FilterSection = ({ setQueryString, setPage }: FilterSectionProps) => {
   const [genderValue, setGenderValue] = useState("");
   const [domainValue, setDomainValue] = useState("");
   const [availabilityValue, setAvailabilityValue] = useState<boolean | null>(
@@ -64,6 +66,7 @@ const FilterSection = ({ setQueryString }: FilterSectionProps) => {
   }, 500);
   useEffect(() => {
     updateQueryString();
+    setPage(1);
 
     return () => updateQueryString.cancel();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -71,7 +74,7 @@ const FilterSection = ({ setQueryString }: FilterSectionProps) => {
 
   return (
     // <VStack alignItems={"flex-start"}>
-    <VStack width="90%" alignItems={"flex-start"} my={6}>
+    <VStack spacing={5} width="90%" alignItems={"flex-start"} my={6}>
       <HStack spacing={5}>
         <HStack>
           <Text fontWeight={"medium"}>Gender:</Text>
@@ -125,7 +128,7 @@ const FilterSection = ({ setQueryString }: FilterSectionProps) => {
             setSearchQuery(e.target.value);
           }}
           type="text"
-          placeholder="Search By Name"
+          placeholder="Search Users By Name"
         />
       </InputGroup>
     </VStack>
